@@ -4,4 +4,4 @@
   shell: docker run -d -p 80:80 --name {{ container_name }} -t nginx:stable-alpine
 
 - name: Copy files in docker container
-  shell: docker cp /vagrant/ {{ container_name }}:/var/www
+  shell: docker cp /vagrant/DevOps_course/HomeWork/index.html {{ container_name }}:/usr/share/nginx/html/index.html
