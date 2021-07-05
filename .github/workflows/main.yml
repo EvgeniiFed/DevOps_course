@@ -33,5 +33,5 @@ jobs:
          pip install ansible ansible-lint
      - name: Lint playbook
        run: |
-         ansible-playbook roles_for_devops_course.yml --syntax-check
+         ansible-playbook ./HomeWork/roles_for_devops_course.yml --syntax-check
          ansible-lint roles_for_devops_course.yml
