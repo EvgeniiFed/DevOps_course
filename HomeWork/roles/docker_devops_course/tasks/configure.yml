@@ -1,0 +1,7 @@
+---
+
+- name: Run docker container
+  shell: docker run -d -p 80:80 --name {{ container_name }} -t nginx:stable-alpine
+
+- name: Copy files in docker container
+  shell: docker cp /vagrant/ {{ container_name }}:/var/www

@@ -1,0 +1,5 @@
+---
+
+container_name: nginx_devops
+git_branch: devops_course
+docker_path: /etc/

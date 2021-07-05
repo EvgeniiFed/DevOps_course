@@ -1,0 +1,63 @@
+---
+
+- name: Install initial dependencies
+  apt:
+    pkg:
+      - python3-apt
+
+- name: Install required system packages
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - virtualenv
+      - python3-setuptools
+      - python3-pip
+      - python3-virtualenv
+      - python3-dev
+      - ansible-lint
+    state: present
+    update_cache: yes
+
+- name: Upgrade pip version
+  pip:
+    name: pip == 20.3.4
+    extra_args: --upgrade
+
+- name: Check if python is already latest
+  shell: pip3 install ansible
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: yes
+
+- name: Install Docker/Docker-compose Module for Python
+  pip:
+    name:
+      - docker
+    state: present
+  notify:
+    - restart docker
+    
+- name: Install Dockle for scan docker container
+  shell: VERSION=$(curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
+    grep '"tag_name":' | \
+    sed -E 's/.*"v([^"]+)".*/\1/' \
+    ) && curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
+  
+- name: Dpkg Dockle file
+  shell: dpkg -i dockle.deb && rm dockle.deb
