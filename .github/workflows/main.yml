@@ -32,5 +32,6 @@ jobs:
          python -m pip install --upgrade pip
          pip install ansible ansible-lint
      - name: Lint playbook
+       uses: barolab/action-ansible-lint@master
        with: 
          targets: ./HomeWork/*.yml
