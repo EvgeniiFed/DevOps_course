@@ -1,0 +1,6 @@
+---
+ 
+- name: Pull docker image
+  docker_image:
+    name: nginx:stable-alpine
+    source: pull
