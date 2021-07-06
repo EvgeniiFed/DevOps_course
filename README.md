@@ -11,6 +11,9 @@ sudo apt-get install -y ansible
 
 
 File main.tf
+
 change variables:
+  
   access_key = ""
+  
   secret_key = ""
