@@ -1,0 +1,9 @@
+---
+
+- name: Clone from Github
+  git:
+    repo: https://github.com/EvgeniiFed/DevOps_course.git
+    dest: "{{ repository_path }}"
+    clone: yes
+    accept_hostkey: yes
+    version: "{{ git_branch }}"
