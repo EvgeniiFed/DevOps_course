@@ -1,6 +1,0 @@
----
-
-container_name: nginx_devops
-git_branch: devops_course
-docker_path: /vagrant/DevOps_course
-repository_path: /vagrant/
