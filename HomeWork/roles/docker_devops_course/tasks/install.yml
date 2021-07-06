@@ -49,8 +49,11 @@
     name:
       - docker
     state: present
-  notify:
-    - restart docker
+
+- name: Restart docker service
+  service:
+    name: docker
+    state: restarted
     
 - name: Install Dockle for scan docker container
   shell: VERSION=$(curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
