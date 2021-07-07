@@ -93,12 +93,12 @@ resource "aws_security_group" "web_allow_http_ssh" {
 resource "aws_instance" "web-server" {
   ami           = "ami-0194c3e07668a7e36"
   instance_type = "t2.micro"
-  key_name      = "devopszvd"
+  key_name      = "devops"
   subnet_id     = aws_subnet.vpc_subnet.id
   vpc_security_group_ids = [aws_security_group.web_allow_http_ssh.id]
 
   tags = {
     Name    = "DevOpsTask"
-    Billing = "Devops-test-instance"
+    Billing = "Devops-instance"
   }
 }
